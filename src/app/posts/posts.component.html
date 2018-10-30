@@ -1,0 +1,58 @@
+<div class="row align-items-end">
+  <div class="col"style="text-align: right">
+    <a class="btn btn-primary" data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm">Write Comment</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="PostForm">
+      <div class="card card-body">
+
+        <form >
+          <div class="form-group">
+            <label for="exampleFormControlInput2">Email address</label>
+            <input [(ngModel)]="newPost.emailAddress" name="something" type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput3">Title</label>
+            <input [(ngModel)]="newPost.title" name="something" class="form-control" id="exampleFormControlInput3" >
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Content</label>
+            <textarea [(ngModel)]="newPost.content" name="something" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>
+
+        <div style="text-align: right">
+          <a class="btn btn-primary"  data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm" (click)="createPost()">Post it!</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div>
+
+  <div class="row">
+    <div class="col-lg-6" *ngFor=" let post of posts">
+      <div class="card" style="margin-bottom: 4px">
+        <div class="card-body">
+          <h5 class="card-title"><div [routerLink]="['/posts', post.id]">{{post.title}}</div></h5>
+          <p class="card-text">{{post.content}}</p>
+          <div class="row">
+            <div class="col" style="text-align: left">
+              <p>Created: {{post.createTime| date:'short'}} by {{post.emailAddress}}</p>
+            </div>
+            <div class="col" style="text-align: right;">
+              <p> Comments({{post.commentsCount }})</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

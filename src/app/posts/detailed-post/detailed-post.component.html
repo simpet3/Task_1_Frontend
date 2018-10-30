@@ -1,0 +1,67 @@
+
+<div class="row">
+  <div class="col">
+
+    <div class="card" >
+      <div class="card-body">
+        <h5 class="card-title">{{post?.title}}</h5>
+        <hr>
+        <p class="card-text">{{post?.content}}</p>
+        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-end">
+      <div class="col" style="text-align: left"><h6>Comments:</h6></div>
+      <div class="col"style="text-align: right">
+
+        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Write Comment</a>
+
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+
+            <form >
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input [(ngModel)]="newComment.emailAddress" name="something" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message</label>
+                <textarea [(ngModel)]="newComment.messageContent" name="something" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </form>
+
+            <div style="text-align: right">
+              <a class="btn btn-primary"  data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" (click)="sendMessage()">Send</a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card" *ngFor="let comment of comments">
+      <div class="card-body">
+        <p class="card-text">{{comment.messageContent}}</p>
+        <div style="text-align: left">
+          <p >
+            Created on {{comment.createTime| date:'short'}} by
+            <a style="color: dodgerblue"> {{comment.emailAddress}} </a>
+          </p>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+

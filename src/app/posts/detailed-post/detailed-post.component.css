@@ -1,0 +1,35 @@
+.post-description{
+  margin: 30px 15px 10px 15px;
+}
+
+.comment-description{
+  text-align: left;
+  margin: 0px;
+}
+
+.first-comment-col{
+  text-align: left;
+}
+
+.second-comment-col{
+  text-align: right;
+}
+
+.post-btn{
+  text-align: right;
+}
+
+.comment-btn-row-field{
+  margin-bottom: 10px;
+}
+
+.content-field{
+  background-color: rgba(0,0,0,0);
+}
+
+.comment-field{
+  margin-bottom:4px;
+}
+#commentHr{
+  margin-bottom: 4px;
+}

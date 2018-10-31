@@ -1,0 +1,34 @@
+.post-title:hover{
+  transition: 250ms;
+  color: #680800;
+
+}
+.post-title{
+  text-decoration: none;
+  color: black;
+}
+
+.write-post-btn{
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.card{
+  margin-bottom: 10px;
+}
+
+.card-body{
+  margin: 0 5px 0 5px;
+}
+
+.post-details{
+  text-align: left;
+}
+
+.post-comment-count-field{
+  text-align: right;
+}
+
+#postItBtn{
+  text-align: right;
+}

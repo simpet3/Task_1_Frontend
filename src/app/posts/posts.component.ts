@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Post} from "../_models/postModels/post";
 import {PostService} from "../_services/post.service";
-import {first} from "rxjs/operators";
 import {NewPost} from "../_models/postModels/newPost";
-import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-posts',
@@ -13,21 +11,18 @@ import {NavigationEnd, Router} from "@angular/router";
 export class PostsComponent implements OnInit {
   newPost = new NewPost('','','',null);
   posts: Post[] = [];
+
   constructor( private postService: PostService) {
+
+    this.sortPosts();
   }
 
   ngOnInit() {
     this.loadAllPosts();
-
   }
 
   private loadAllPosts() {
-    this.postService.getAll().pipe(first()).subscribe(
-      posts => {
-        this.posts = posts;
-        console.log('postas[1]: ' + this.posts[1].title);
-      }
-    )
+    this.postService.getAll().subscribe(posts=> {this.posts = posts; this.sortPosts()}  );
   }
 
   protected createPost(){
@@ -35,7 +30,7 @@ export class PostsComponent implements OnInit {
       this.newPost.createTime = new Date();
       this.postService.createPost(this.newPost);
       this.resetPostInputs();
-
+      location.reload();
     }
   }
 
@@ -43,5 +38,12 @@ export class PostsComponent implements OnInit {
     this.newPost.content = '';
     this.newPost.emailAddress = '';
     this.newPost.createTime = null;
+  }
+
+  private sortPosts(){
+      this.posts.sort(function(a,b){
+      return a.createTime < b.createTime ? -1 : 1;
+    });
+
   }
 }

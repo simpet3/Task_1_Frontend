@@ -16,7 +16,6 @@ export class DetailedPostComponent implements OnInit {
   id: number;
   post: Post;
   comments: Comment [] = [];
-  messageForm: any;
   newComment = new NewComment('','', null);
 
   constructor( private postService: PostService, private commentService: CommentService, private route: ActivatedRoute) { }
@@ -31,7 +30,6 @@ export class DetailedPostComponent implements OnInit {
     });
     this.loadPost(this.id);
     this.loadComments(this.id);
-    console.log('parametras: ' + this.id);
   }
 
   private loadPost(postId: number) {
@@ -58,8 +56,8 @@ export class DetailedPostComponent implements OnInit {
     if (this.newComment.emailAddress != '' && this.newComment.messageContent != '') {
       this.newComment.createTime = new Date();
       this.createComment(this.id, this.newComment);
-      console.log('issiusta zinute :' + this.newComment.messageContent);
       this.resetMessageInputs();
+      location.reload();
     }
   }
     private resetMessageInputs(){

@@ -2,22 +2,25 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Comment} from "../_models/commentModels/comment";
 import {NewComment} from "../_models/commentModels/newComment";
+import {ConfigurationService} from "./configuration.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
-  constructor(private http: HttpClient) { }
+  api_url: string;
+  constructor(private http: HttpClient, config: ConfigurationService) {
+    this.api_url = config.getApiUrl();
+  }
 
   getCommentByPostId(postId: number) {
-    var url = 'http://localhost:50229/api/Posts/' + postId + '/Comments';
+    var url = this.api_url + '/api/Posts/' + postId + '/Comments';
     return this.http.get<Comment[]>(url);
   }
 
   createCommentByPostId(postId: number, comment: NewComment) {
-    var url = 'http://localhost:50229/api/Posts/' + postId + '/Comments';
-    console.log('postinama zinute');
+    var url = this.api_url + '/api/Posts/' + postId + '/Comments';
     return this.http.post(url, comment)
-      .subscribe((res:Response) => { console.log(res); });;
+      .subscribe((res:Response) => { console.log(res); });
   }
 }

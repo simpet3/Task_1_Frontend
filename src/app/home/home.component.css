@@ -1,0 +1,11 @@
+hr {
+  margin: 0;
+}
+.main-field{
+  display: inline-block;
+  margin: 20px;
+}
+.centered{
+  text-align: center;
+}
+

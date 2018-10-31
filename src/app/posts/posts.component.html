@@ -1,6 +1,6 @@
 <div class="row align-items-end">
-  <div class="col"style="text-align: right">
-    <a class="btn btn-primary" data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm">Write Comment</a>
+  <div class="col write-post-btn" >
+    <a class="btn btn-info" data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm">Write Comment</a>
   </div>
 </div>
 
@@ -8,7 +8,6 @@
   <div class="col">
     <div class="collapse multi-collapse" id="PostForm">
       <div class="card card-body">
-
         <form >
           <div class="form-group">
             <label for="exampleFormControlInput2">Email address</label>
@@ -16,38 +15,38 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput3">Title</label>
-            <input [(ngModel)]="newPost.title" name="something" class="form-control" id="exampleFormControlInput3" >
+            <input [(ngModel)]="newPost.title" name="something" class="form-control" id="exampleFormControlInput3" placeholder="Write your title here...">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Content</label>
-            <textarea [(ngModel)]="newPost.content" name="something" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea [(ngModel)]="newPost.content" name="something" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your content here..."></textarea>
           </div>
         </form>
 
-        <div style="text-align: right">
-          <a class="btn btn-primary"  data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm" (click)="createPost()">Post it!</a>
+        <div id="postItBtn" >
+          <a class="btn btn-info"  data-toggle="collapse" href="#PostForm" role="button" aria-expanded="false" aria-controls="PostForm" (click)="createPost()">Post it!</a>
         </div>
-
       </div>
-
     </div>
   </div>
 </div>
-
 <div>
 
   <div class="row">
     <div class="col-lg-6" *ngFor=" let post of posts">
-      <div class="card" style="margin-bottom: 4px">
+      <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><div [routerLink]="['/posts', post.id]">{{post.title}}</div></h5>
+          <h3 class="card-title"><a class="post-title" [routerLink]="['/posts', post.id]">{{post.title}}</a></h3>
+          <hr>
           <p class="card-text">{{post.content}}</p>
           <div class="row">
-            <div class="col" style="text-align: left">
-              <p>Created: {{post.createTime| date:'short'}} by {{post.emailAddress}}</p>
+            <div class="col post-details">
+              <p>Created:
+                <a style="color: green">{{post.createTime| date:'short'}}</a> by
+                <a style="color: red">{{post.emailAddress}} </a></p>
             </div>
-            <div class="col" style="text-align: right;">
-              <p> Comments({{post.commentsCount }})</p>
+            <div class="col post-comment-count-field" >
+              <p> <a [routerLink]="['/posts', post.id]" style="color: dodgerblue">Comments({{post.commentsCount }})</a></p>
             </div>
           </div>
         </div>

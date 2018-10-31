@@ -1,0 +1,14 @@
+.navbar-main {
+  margin-bottom: 10px;
+  margin-left: -16px;
+  margin-right: -16px;
+  background-color: rgb(23, 162, 184);
+}
+
+.navbar-collapse{
+  margin: auto 10px auto 22px;
+}
+
+.nav-link{
+  margin-right: 10px;
+}
